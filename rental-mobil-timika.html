@@ -1,0 +1,1019 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Rental Mobil Timika</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;1,800&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: hero ala poster (navy + kuning) dengan pemandangan Timika dan mobil yang melaju masuk,
+   lalu armada berfilter, perencana sewa berbentuk slip, titik jemput, alasan, tanya-jawab, dan penutup "Ready, Bosku." */
+:root{
+  --f-disp:'Barlow Condensed','Arial Narrow',Impact,sans-serif;
+  --f-body:'Barlow',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+
+  --navy:#0B1F4B;
+  --sun:#FFC400;
+  --sun-ink:#1A1400;
+  --wa:#107A3A;
+  --head-bg:#071638;
+
+  --bg:#F2F5FB;
+  --bg-alt:#E6EDF8;
+  --surface:#FFFFFF;
+  --ink:#0A1633;
+  --muted:#4B5A7C;
+  --line:#D5DDEC;
+  --line-strong:#A9B6D1;
+  --stage-a:#D3E1F6;
+  --stage-b:#EAF0FA;
+  --floor:rgba(10,22,51,.07);
+  --accent:#0B1F4B;
+  --accent-ink:#FFFFFF;
+  --link:#0B3A9E;
+  --focus:#0B57D0;
+  --glass:#BFD7F2;
+  --arch:#0A1022;
+  --stroke:rgba(10,22,51,.4);
+
+  --paper:#FBFCFF;
+  --paper-ink:#0A1633;
+  --paper-muted:#5A6788;
+  --paper-line:#C3CCE0;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#060E22; --bg-alt:#091433; --surface:#0D1A3A; --ink:#EDF2FC; --muted:#9DABCB;
+    --line:#1B2B58; --line-strong:#3A4F85; --stage-a:#16295E; --stage-b:#0F1D43; --floor:rgba(255,255,255,.05);
+    --accent:#FFC400; --accent-ink:#1A1400; --link:#8DB4FF; --focus:#8DB4FF;
+    --glass:#7FA6D6; --stroke:rgba(255,255,255,.38);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#060E22; --bg-alt:#091433; --surface:#0D1A3A; --ink:#EDF2FC; --muted:#9DABCB;
+  --line:#1B2B58; --line-strong:#3A4F85; --stage-a:#16295E; --stage-b:#0F1D43; --floor:rgba(255,255,255,.05);
+  --accent:#FFC400; --accent-ink:#1A1400; --link:#8DB4FF; --focus:#8DB4FF;
+  --glass:#7FA6D6; --stroke:rgba(255,255,255,.38);
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--ink);
+  font:400 16px/1.6 var(--f-body);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);
+  background:var(--head-bg);z-index:30;
+}
+h1,h2,h3,p,ul,dl,dd{margin:0}
+a{color:inherit}
+button,input,select{font:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.top :focus-visible,.hero :focus-visible,.cta :focus-visible,.tile-more :focus-visible{outline-color:var(--sun)}
+
+.wrap{
+  width:100%;max-width:1200px;margin-inline:auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+.sec{padding-block:clamp(56px,9vw,104px)}
+.sec.alt{background:var(--bg-alt)}
+.scroll-m{scroll-margin-top:72px}
+
+/* ---------- tombol ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:48px;padding:0 22px;border-radius:8px;
+  font:600 16px/1 var(--f-body);text-decoration:none;cursor:pointer;
+  border:2px solid transparent;
+  transition:transform .15s ease,box-shadow .15s ease,background-color .15s ease;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.btn svg{width:20px;height:20px;flex:none}
+.btn-sun{background:var(--sun);color:var(--sun-ink)}
+.btn-sun:hover{box-shadow:0 10px 24px -10px rgba(255,196,0,.8)}
+.btn-wa{background:var(--wa);color:#fff}
+.btn-ghost{border-color:rgba(255,255,255,.5);color:#fff;background:transparent}
+.btn-ghost:hover{background:rgba(255,255,255,.1)}
+.btn-line{border-color:var(--line-strong);color:var(--ink);background:transparent}
+.btn-line:hover{border-color:var(--ink)}
+.btn-sm{min-height:42px;padding:0 14px;font-size:14px;gap:8px}
+.btn-sm svg{width:18px;height:18px}
+
+/* ---------- header ---------- */
+.top{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:20;
+  background:var(--head-bg);color:#fff;border-bottom:1px solid rgba(255,255,255,.1);
+}
+.top .wrap{display:flex;align-items:center;gap:16px;min-height:62px}
+.brand{
+  font:italic 800 22px/1 var(--f-disp);text-transform:uppercase;text-decoration:none;
+  letter-spacing:.01em;white-space:nowrap;color:#fff;
+}
+.brand b{
+  font-weight:800;color:var(--navy);background:var(--sun);
+  padding:2px 8px 2px 6px;margin-left:2px;display:inline-block;transform:skewX(-10deg);
+}
+.top-right{margin-left:auto;display:flex;align-items:center;gap:20px}
+.nav{display:none;gap:22px}
+.nav a{font:600 15px var(--f-body);text-decoration:none;color:#D7E1F8;padding:8px 0}
+.nav a:hover{color:var(--sun)}
+.icon-btn{
+  width:42px;height:42px;display:grid;place-items:center;border-radius:8px;cursor:pointer;
+  background:transparent;border:1.5px solid rgba(255,255,255,.35);color:#fff;
+}
+.icon-btn:hover{border-color:var(--sun);color:var(--sun)}
+.icon-btn svg{width:20px;height:20px}
+.top .btn{display:none}
+@media (min-width:520px){.top .btn{display:inline-flex;min-height:42px;padding:0 16px;font-size:15px}}
+@media (min-width:860px){.nav{display:flex}}
+
+/* ---------- hero ---------- */
+.hero{
+  position:relative;overflow:hidden;color:#fff;
+  background:linear-gradient(180deg,#071638 0%,#0B2A6B 52%,#1C4FA8 100%);
+  --stroke:rgba(6,18,46,.55);--glass:#BFD7F2;
+}
+.hero-copy{padding-block:clamp(36px,7vw,84px) 0}
+.hero-copy>*{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+.hero-copy>:nth-child(2){animation-delay:.08s}
+.hero-copy>:nth-child(3){animation-delay:.18s}
+.hero-copy>:nth-child(4){animation-delay:.28s}
+.hero-copy>:nth-child(5){animation-delay:.36s}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}}
+.kicker{
+  font:500 13px/1.4 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--sun);margin-bottom:18px;
+}
+h1{
+  font:italic 800 clamp(3.5rem,13.5vw,9.6rem)/.88 var(--f-disp);
+  text-transform:uppercase;letter-spacing:-.005em;
+}
+h1 .l1{display:block}
+h1 .l2{position:relative;display:inline-block;padding:0 .16em 0 .1em;color:var(--navy);isolation:isolate;margin-top:.05em}
+h1 .l2::before{
+  content:"";position:absolute;inset:.05em 0 .0em;background:var(--sun);
+  transform:skewX(-10deg);z-index:-1;
+}
+.lead{max-width:34rem;margin:26px 0 28px;font-size:clamp(1.05rem,2.2vw,1.2rem);color:#D6E0F7}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+.terms{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.term{
+  min-height:38px;padding:0 14px;border-radius:999px;cursor:pointer;
+  border:1.5px solid rgba(255,255,255,.35);background:rgba(255,255,255,.06);color:#fff;
+  font:600 14px var(--f-body);transition:background-color .15s,border-color .15s,color .15s;
+}
+.term:hover{background:var(--sun);border-color:var(--sun);color:var(--sun-ink)}
+.scene{position:relative;margin-top:clamp(4px,2vw,20px);height:clamp(200px,34vw,360px)}
+.scene svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.scene .layer{will-change:transform}
+.cloud{animation:drift 22s ease-in-out infinite alternate}
+.cloud.c2{animation-duration:30s;animation-direction:alternate-reverse}
+@keyframes drift{from{transform:translateX(-34px)}to{transform:translateX(34px)}}
+.drive{animation:drive 2.9s cubic-bezier(.16,.75,.2,1) both}
+@keyframes drive{from{transform:translateX(-760px)}}
+.dash{animation:dash .5s linear 6}
+@keyframes dash{to{stroke-dashoffset:-48}}
+.hero .hub{animation:spin .34s linear 9}
+.hub{transform-box:fill-box;transform-origin:center}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---------- ticker ---------- */
+.ticker{background:var(--sun);color:var(--navy);overflow:hidden;border-block:3px solid var(--navy)}
+.ticker-track{display:flex;width:max-content;animation:tick 34s linear infinite}
+.ticker ul{display:flex;list-style:none;padding:0}
+.ticker li{font:italic 800 clamp(1.4rem,3vw,2rem)/1 var(--f-disp);text-transform:uppercase;padding:12px 0;white-space:nowrap}
+.ticker li::after{content:"/";margin:0 .7em;opacity:.5}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* ---------- judul seksi ---------- */
+.eyebrow{
+  font:500 13px/1.3 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:14px;
+}
+h2{
+  font:italic 800 clamp(2.4rem,6vw,4.3rem)/.95 var(--f-disp);
+  text-transform:uppercase;margin-bottom:16px;text-wrap:balance;
+}
+.sec-lead{max-width:36rem;color:var(--muted)}
+
+/* ---------- armada ---------- */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0}
+.chip{
+  min-height:40px;padding:0 16px;border-radius:999px;cursor:pointer;
+  border:1.5px solid var(--line-strong);background:transparent;color:var(--ink);
+  font:600 14px var(--f-body);transition:background-color .15s,color .15s,border-color .15s;
+}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.grid{display:grid;gap:18px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:620px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1000px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.card{
+  display:flex;flex-direction:column;min-width:0;overflow:hidden;
+  background:var(--surface);border:1px solid var(--line);border-radius:6px;
+  animation:pop .5s cubic-bezier(.2,.7,.2,1) both;
+  transition:transform .2s ease,box-shadow .2s ease;
+}
+.card:hover{transform:translateY(-4px);box-shadow:0 16px 30px -16px rgba(8,20,55,.45)}
+@keyframes pop{from{opacity:0;transform:translateY(12px)}}
+.stage{
+  position:relative;aspect-ratio:16/10;max-width:100%;overflow:hidden;
+  background:linear-gradient(180deg,var(--stage-a),var(--stage-b));
+  display:flex;align-items:flex-end;justify-content:center;padding:0 11% 12%;
+}
+.stage::after{content:"";position:absolute;left:0;right:0;bottom:0;height:13%;background:var(--floor)}
+.stage .car{position:relative;z-index:1;width:100%;height:auto;display:block;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.card:hover .car{transform:translateX(8px)}
+.card:hover .hub{animation:spin .6s linear infinite}
+.badge{
+  position:absolute;top:12px;left:12px;z-index:2;
+  font:500 12px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;
+  background:var(--navy);color:#fff;padding:6px 8px;border-radius:3px;
+}
+.badge.seats{left:auto;right:12px;background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+.card-body{padding:18px 18px 14px;display:grid;gap:8px}
+.card h3{font:700 1.7rem/1 var(--f-disp);text-transform:uppercase}
+.card-body p{color:var(--muted);font-size:.95rem;line-height:1.45}
+.price{
+  justify-self:start;margin-top:4px;padding:6px 10px;border-radius:4px;
+  font:500 13px/1.2 var(--f-mono);color:var(--muted);border:1px dashed var(--line-strong);
+}
+.price.has{border-style:solid;color:var(--ink)}
+.card-actions{margin-top:auto;display:grid;grid-template-columns:1fr auto;gap:8px;padding:0 18px 18px}
+.tile-more{
+  background:var(--navy);color:#fff;border-color:var(--navy);
+  justify-content:center;padding:26px 22px;gap:14px;
+}
+.tile-more h3{font:italic 800 clamp(3rem,5vw,3.6rem)/.9 var(--f-disp);color:var(--sun)}
+.tile-more p{color:#C9D5F2}
+.tile-more:hover{transform:none;box-shadow:none}
+
+/* ---------- perencana ---------- */
+.plan{display:grid;gap:36px;margin-top:36px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:920px){
+  .plan{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:56px;align-items:start}
+  .slip{position:sticky;top:96px}
+}
+.field,fieldset{display:grid;gap:8px;margin:0 0 22px;padding:0;border:0;min-width:0}
+.field>label,.lab{
+  font:500 12px/1.2 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:0;
+}
+select,input[type="date"],input[type="text"],input[type="number"]{
+  width:100%;min-height:48px;padding:0 14px;border-radius:6px;
+  border:1.5px solid var(--line-strong);background:var(--surface);color:var(--ink);
+  font:500 16px var(--f-body);
+}
+select:hover,input:hover{border-color:var(--ink)}
+input[type="number"]{-moz-appearance:textfield;appearance:textfield}
+input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.row2{display:grid;gap:12px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:520px){.row2{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)}}
+.stepper{
+  display:flex;min-width:0;border:1.5px solid var(--line-strong);border-radius:6px;background:var(--surface);overflow:hidden;
+}
+.stepper button{
+  width:50px;flex:none;border:0;background:transparent;color:var(--ink);font:600 22px var(--f-body);cursor:pointer;
+}
+.stepper button:hover{background:var(--line)}
+.stepper input{border:0;border-radius:0;text-align:center;min-height:46px;padding:0;flex:1;min-width:0;font-weight:600}
+.seg{
+  display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);position:relative;
+  border:1.5px solid var(--line-strong);border-radius:6px;overflow:hidden;background:var(--surface);
+}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label{
+  display:grid;place-items:center;min-height:46px;padding:0 8px;cursor:pointer;text-align:center;
+  font:600 15px var(--f-body);color:var(--ink);transition:background-color .15s,color .15s;
+}
+.seg label+input+label{border-left:1.5px solid var(--line-strong)}
+.seg input:checked+label{background:var(--accent);color:var(--accent-ink)}
+.seg input:focus-visible+label{outline:3px solid var(--focus);outline-offset:-3px}
+
+.slip{
+  --stroke:rgba(10,22,51,.4);--glass:#BFD7F2;
+  background:var(--paper);color:var(--paper-ink);border-radius:6px;border-top:8px solid var(--sun);
+  padding:22px 24px 0;box-shadow:0 26px 44px -26px rgba(5,15,45,.55);min-width:0;
+}
+.slip-head{display:flex;justify-content:space-between;gap:12px;font:500 12px/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--paper-muted)}
+.slip-art{
+  margin:18px 0 6px;aspect-ratio:16/7;max-width:100%;border-radius:4px;overflow:hidden;
+  background:linear-gradient(180deg,#DCE7F8,#EEF3FB);
+  display:flex;align-items:flex-end;justify-content:center;padding:0 22% 7%;
+}
+.slip-art .car{width:100%;height:auto;display:block}
+.slip-art .ghost path{stroke-dasharray:5 4}
+.slip-list{display:grid;margin:0}
+.slip-list>div{
+  display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.6fr);gap:12px;align-items:baseline;
+  padding:11px 0;border-bottom:1px solid var(--paper-line);
+}
+.slip-list dt{font:500 11.5px/1.3 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--paper-muted)}
+.slip-list dd{font-weight:600;overflow-wrap:anywhere}
+.slip-list .est{border-bottom:0;padding-top:16px}
+.slip-list .est dd{font:italic 800 1.7rem/1 var(--f-disp);text-transform:uppercase}
+.slip-list .est small{grid-column:2;font-size:.85rem;color:var(--paper-muted);margin-top:-6px}
+.tear{position:relative;margin:8px -24px 0;border-top:2px dashed var(--paper-line)}
+.tear::before,.tear::after{content:"";position:absolute;top:-12px;width:22px;height:22px;border-radius:50%;background:var(--bg-alt)}
+.tear::before{left:-11px}
+.tear::after{right:-11px}
+.slip-foot{display:grid;gap:14px;padding:22px 0 24px}
+.bubble{
+  background:#E2F6D5;color:#10230F;border-radius:12px 12px 12px 2px;padding:14px 16px;
+  font:500 13px/1.55 var(--f-mono);white-space:pre-wrap;overflow-wrap:anywhere;
+}
+.fine{font-size:.85rem;color:var(--paper-muted);line-height:1.45}
+
+/* ---------- titik jemput ---------- */
+.route{margin-top:36px}
+.stops{--n:5;--i:0;display:grid;gap:4px;position:relative}
+.stops::before{content:"";position:absolute;left:10px;top:24px;bottom:24px;border-left:3px dashed var(--line-strong)}
+.stop{
+  position:relative;text-align:left;min-height:56px;padding:14px 12px 14px 44px;
+  border:0;border-radius:6px;background:transparent;color:var(--ink);cursor:pointer;
+  transition:background-color .15s;
+}
+.stop:hover{background:var(--bg-alt)}
+.stop::before{
+  content:"";position:absolute;left:2px;top:17px;width:20px;height:20px;border-radius:50%;
+  background:var(--bg);border:3px solid var(--ink);transition:background-color .2s,transform .2s;
+}
+.stop[aria-pressed="true"]{background:var(--surface);box-shadow:inset 0 0 0 1px var(--line)}
+.stop[aria-pressed="true"]::before{background:var(--sun);transform:scale(1.2)}
+.st-name{display:block;font:700 1.45rem/1.1 var(--f-disp);text-transform:uppercase}
+.st-desc{display:block;color:var(--muted);font-size:.93rem;line-height:1.45;margin-top:6px}
+.marker{display:none}
+.route-note{margin-top:26px;color:var(--muted)}
+.route-note strong{color:var(--ink)}
+.route-note a{color:var(--link);font-weight:600}
+@media (min-width:760px){
+  .stops{grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:0;padding-top:78px}
+  .stops::before{left:calc(50% / var(--n));right:calc(50% / var(--n));top:87px;bottom:auto;border-left:0;border-top:3px dashed var(--line-strong)}
+  .stop{text-align:center;padding:34px 12px 14px;border-radius:6px}
+  .stop::before{left:50%;top:0;margin-left:-10px}
+  .stop:hover{background:transparent}
+  .stop[aria-pressed="true"]{background:transparent;box-shadow:none}
+  .marker{
+    display:block;position:absolute;top:48px;width:78px;z-index:2;
+    left:calc((var(--i) + .5) / var(--n) * 100%);transform:translateX(-50%);
+    transition:left .75s cubic-bezier(.5,0,.2,1);pointer-events:none;
+  }
+  .marker .car{display:block;width:100%;height:auto}
+}
+
+/* ---------- alasan ---------- */
+.why{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:3px solid var(--ink);margin-top:36px}
+.why-item{padding:26px 18px 28px 0;display:grid;gap:12px;align-content:start;border-bottom:1px solid var(--line-strong)}
+.why-item:nth-child(even){padding-left:18px;border-left:1px solid var(--line-strong)}
+.ico{width:52px;height:52px;border-radius:50%;background:var(--sun);color:var(--navy);display:grid;place-items:center}
+.ico svg{width:28px;height:28px}
+.why-item h3{font:700 1.5rem/1.05 var(--f-disp);text-transform:uppercase}
+.why-item p{color:var(--muted);font-size:.95rem;line-height:1.5}
+@media (min-width:860px){
+  .why{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .why-item{border-bottom:0;padding:28px 22px 8px}
+  .why-item:first-child{padding-left:0}
+  .why-item:nth-child(even){padding-left:22px}
+  .why-item+.why-item{border-left:1px solid var(--line-strong)}
+}
+
+/* ---------- faq ---------- */
+.faq{margin-top:32px;border-top:1px solid var(--line-strong);max-width:820px}
+.q{border-bottom:1px solid var(--line-strong)}
+.q-btn{
+  width:100%;min-height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:16px 0;background:none;border:0;color:var(--ink);cursor:pointer;text-align:left;
+  font:700 1.5rem/1.1 var(--f-disp);text-transform:uppercase;
+}
+.q-btn::after{content:"+";font:500 28px/1 var(--f-mono);flex:none;transition:transform .25s ease;color:var(--muted)}
+.q-btn[aria-expanded="true"]::after{transform:rotate(45deg);color:var(--ink)}
+.q-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
+.q.open .q-panel{grid-template-rows:1fr}
+.q-panel>div{overflow:hidden}
+.q-panel p{padding:0 0 20px;color:var(--muted);max-width:60ch}
+
+/* ---------- penutup ---------- */
+.cta{background:var(--head-bg);color:#fff;padding-block:clamp(56px,9vw,96px) 28px}
+.cta h2{font-size:clamp(3.4rem,13vw,9rem);line-height:.88;margin-bottom:0}
+.cta h2 em{font-style:inherit;color:var(--sun)}
+.cta-grid{display:grid;gap:32px;align-items:end}
+@media (min-width:900px){.cta-grid{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr)}}
+.cta .lab{color:#9FB0D8}
+.num{font:500 clamp(1.5rem,5.5vw,2.3rem)/1.2 var(--f-mono);letter-spacing:.02em;margin:8px 0 18px;overflow-wrap:anywhere}
+.cta .actions{gap:10px}
+.foot{
+  margin-top:56px;padding-top:20px;border-top:1px solid rgba(255,255,255,.16);
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;color:#B9C5E4;font-size:.9rem;
+}
+
+/* ---------- tombol WA mengambang ---------- */
+.fab{
+  position:fixed;z-index:25;
+  right:calc(16px + env(safe-area-inset-right,0px));
+  bottom:calc(16px + env(safe-area-inset-bottom,0px));
+  min-height:54px;padding:0 20px 0 16px;box-shadow:0 14px 28px -10px rgba(5,40,20,.6);
+  animation:ring 2.8s ease-out infinite;
+}
+@keyframes ring{
+  0%{box-shadow:0 14px 28px -10px rgba(5,40,20,.6),0 0 0 0 rgba(16,122,58,.55)}
+  70%,100%{box-shadow:0 14px 28px -10px rgba(5,40,20,.6),0 0 0 16px rgba(16,122,58,0)}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .ticker-track{width:auto;flex-wrap:wrap}
+  .ticker ul[aria-hidden="true"]{display:none}
+  .ticker ul{flex-wrap:wrap}
+}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#atas">Rental Mobil <b>Timika</b></a>
+    <div class="top-right">
+      <nav class="nav" aria-label="Menu utama">
+        <a href="#armada">Armada</a>
+        <a href="#rencana">Atur sewa</a>
+        <a href="#titik">Titik jemput</a>
+        <a href="#tanya">Tanya jawab</a>
+      </nav>
+      <a class="btn btn-wa wa-link" href="https://wa.me/6282271597288" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.9L2 22l5.2-1.5A9.9 9.9 0 1 0 12.04 2Zm0 1.8a8.1 8.1 0 1 1-4.3 15l-.3-.2-3 .85.9-2.9-.2-.3A8.1 8.1 0 0 1 12.04 3.8Zm-2.9 3.9c-.2 0-.5.1-.7.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-1.9-.9c-.3-.1-.5-.1-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.2-1.2-.4-2.3-1.4-.8-.8-1.4-1.7-1.5-2-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.1c-.2-.6-.5-.5-.7-.5Z"/></svg>
+        Chat WA
+      </a>
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Ganti tema" title="Ganti tema">
+        <svg id="icoMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg>
+        <svg id="icoSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" hidden><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="atas">
+    <div class="wrap hero-copy">
+      <p class="kicker">Timika, Mimika &middot; Sewa harian, bulanan, tahunan</p>
+      <h1><span class="l1">Rental Mobil</span><span class="l2">Timika</span></h1>
+      <p class="lead">Rush, Terios, Avanza, Xenia, Brio, Sigra, dan Calya siap jalan. Pilih mobil, atur tanggal, lalu kirim rencana sewa Anda lewat WhatsApp.</p>
+      <div class="actions">
+        <a class="btn btn-sun" href="#armada">Lihat armada</a>
+        <a class="btn btn-ghost wa-link" href="https://wa.me/6282271597288" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.9L2 22l5.2-1.5A9.9 9.9 0 1 0 12.04 2Zm0 1.8a8.1 8.1 0 1 1-4.3 15l-.3-.2-3 .85.9-2.9-.2-.3A8.1 8.1 0 0 1 12.04 3.8Zm-2.9 3.9c-.2 0-.5.1-.7.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-1.9-.9c-.3-.1-.5-.1-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.2-1.2-.4-2.3-1.4-.8-.8-1.4-1.7-1.5-2-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.1c-.2-.6-.5-.5-.7-.5Z"/></svg>
+          Chat WhatsApp
+        </a>
+      </div>
+      <div class="terms" role="group" aria-label="Pilih lama sewa">
+        <button class="term" type="button" data-unit="hari">Sewa perhari</button>
+        <button class="term" type="button" data-unit="bulan">Sewa perbulan</button>
+        <button class="term" type="button" data-unit="tahun">Sewa pertahun</button>
+      </div>
+    </div>
+
+    <div class="scene" aria-hidden="true">
+      <svg viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice" focusable="false">
+        <defs>
+          <linearGradient id="beam" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0" stop-color="#FFE9A0" stop-opacity=".6"/>
+            <stop offset="1" stop-color="#FFE9A0" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <circle cx="430" cy="86" r="86" fill="#FFC400" opacity=".13"/>
+        <circle cx="430" cy="86" r="46" fill="#FFC400" opacity=".95"/>
+        <g class="cloud" fill="#fff" opacity=".17"><ellipse cx="150" cy="70" rx="82" ry="13"/><ellipse cx="200" cy="60" rx="48" ry="13"/></g>
+        <g class="cloud c2" fill="#fff" opacity=".13"><ellipse cx="700" cy="48" rx="90" ry="12"/><ellipse cx="750" cy="39" rx="50" ry="12"/></g>
+        <g class="cloud" fill="#fff" opacity=".12"><ellipse cx="1040" cy="96" rx="70" ry="11"/></g>
+        <g class="layer" data-depth=".02">
+          <path d="M-150 232L-20 172L90 206L230 132L360 202L470 152L610 216L720 122L850 192L980 142L1100 202L1210 162L1350 222V300H-150Z" fill="#2A7C86" opacity=".85"/>
+        </g>
+        <g class="layer" data-depth=".04">
+          <path d="M-150 262L-40 208L110 242L250 188L400 246L560 194L700 250L860 178L1010 242L1140 202L1350 252V300H-150Z" fill="#1E6B58"/>
+        </g>
+        <g transform="translate(850 0)">
+          <rect x="-46" y="254" width="92" height="22" fill="#10234F"/>
+          <rect x="-34" y="240" width="68" height="16" fill="#16306A"/>
+          <polygon points="-22,242 22,242 16,92 -16,92" fill="#1B2F63"/>
+          <g stroke="#C99A1B" stroke-width="2.5" fill="none">
+            <path d="M-20 222H20M-19 200H19M-18 178H18M-17 156H17M-16.5 134H16.5M-16 112H16"/>
+          </g>
+          <path d="M-22 92L-15 72H15L22 92Z" fill="#C99A1B"/>
+          <path d="M-13 72Q0 28 13 72Z" fill="#FFC400"/>
+          <rect x="-1.5" y="18" width="3" height="18" fill="#FFC400"/>
+        </g>
+        <text x="600" y="252" font-family="'Barlow Condensed','Arial Narrow',Impact,sans-serif" font-style="italic" font-weight="800" font-size="46" letter-spacing="5" fill="#FFFFFF" opacity=".95">TIMIKA</text>
+        <g class="layer" data-depth=".07">
+          <path d="M-150 274Q100 240 320 266T700 260T1050 266T1350 254V300H-150Z" fill="#134F3E"/>
+        </g>
+        <rect x="-10" y="272" width="1220" height="40" fill="#08112B"/>
+        <line class="dash" x1="-10" x2="1210" y1="287" y2="287" stroke="#FFC400" stroke-width="3" stroke-dasharray="26 22"/>
+        <g transform="translate(330 199) scale(.9)">
+          <g class="drive">
+            <path d="M250 62L560 24L560 104Z" fill="url(#beam)"/>
+            <g id="heroCar"></g>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <div class="ticker" aria-label="Jenis mobil">
+    <div class="ticker-track">
+      <ul>
+        <li>Rush</li><li>Terios</li><li>Avanza</li><li>Xenia</li><li>Brio</li><li>Sigra</li><li>Calya</li><li>Dll</li>
+      </ul>
+      <ul aria-hidden="true">
+        <li>Rush</li><li>Terios</li><li>Avanza</li><li>Xenia</li><li>Brio</li><li>Sigra</li><li>Calya</li><li>Dll</li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="sec scroll-m" id="armada">
+    <div class="wrap">
+      <p class="eyebrow">Armada &middot; <span id="fleetCount">7</span> unit</p>
+      <h2>Pilih yang cocok</h2>
+      <p class="sec-lead">Dari SUV untuk jalan jauh sampai city car untuk dalam kota. Ketersediaan unit dikonfirmasi lewat WhatsApp.</p>
+      <div class="chips" id="chips" role="group" aria-label="Filter armada"></div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="sec alt scroll-m" id="rencana">
+    <div class="wrap">
+      <p class="eyebrow">Atur sewa</p>
+      <h2>Susun rencana, kirim lewat WA</h2>
+      <p class="sec-lead">Pilih mobil, tanggal, dan lama sewa. Ringkasannya langsung jadi pesan WhatsApp, tinggal dikirim.</p>
+      <form class="plan" id="planForm" novalidate>
+        <div>
+          <div class="field">
+            <label for="fCar">Mobil</label>
+            <select id="fCar"></select>
+          </div>
+          <div class="field">
+            <label for="fStart">Mulai sewa</label>
+            <input type="date" id="fStart">
+          </div>
+          <fieldset>
+            <legend class="lab">Lama sewa</legend>
+            <div class="row2">
+              <div class="stepper">
+                <button type="button" id="qMinus" aria-label="Kurangi lama sewa">&minus;</button>
+                <input id="fQty" type="number" min="1" max="365" value="1" inputmode="numeric" aria-label="Jumlah">
+                <button type="button" id="qPlus" aria-label="Tambah lama sewa">+</button>
+              </div>
+              <div class="seg" role="radiogroup" aria-label="Satuan lama sewa">
+                <input type="radio" name="unit" id="uHari" value="hari" checked><label for="uHari">Hari</label>
+                <input type="radio" name="unit" id="uBulan" value="bulan"><label for="uBulan">Bulan</label>
+                <input type="radio" name="unit" id="uTahun" value="tahun"><label for="uTahun">Tahun</label>
+              </div>
+            </div>
+          </fieldset>
+          <div class="field">
+            <label for="fStop">Titik jemput</label>
+            <select id="fStop"></select>
+          </div>
+          <fieldset>
+            <legend class="lab">Layanan</legend>
+            <div class="seg" role="radiogroup" aria-label="Jenis layanan">
+              <input type="radio" name="service" id="sLepas" value="Lepas kunci" checked><label for="sLepas">Lepas kunci</label>
+              <input type="radio" name="service" id="sSopir" value="Dengan sopir"><label for="sSopir">Dengan sopir</label>
+            </div>
+          </fieldset>
+          <div class="field">
+            <label for="fName">Nama (opsional)</label>
+            <input type="text" id="fName" autocomplete="name" placeholder="Nama Anda">
+          </div>
+        </div>
+
+        <aside class="slip" aria-label="Ringkasan sewa">
+          <div class="slip-head"><span>Slip pesanan</span><span>Timika</span></div>
+          <div class="slip-art" id="slipArt"></div>
+          <dl class="slip-list" id="slipList"></dl>
+          <div class="tear"></div>
+          <div class="slip-foot">
+            <div class="bubble" id="bubble"></div>
+            <a class="btn btn-wa" id="sendWA" href="https://wa.me/6282271597288" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.9L2 22l5.2-1.5A9.9 9.9 0 1 0 12.04 2Zm0 1.8a8.1 8.1 0 1 1-4.3 15l-.3-.2-3 .85.9-2.9-.2-.3A8.1 8.1 0 0 1 12.04 3.8Zm-2.9 3.9c-.2 0-.5.1-.7.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-1.9-.9c-.3-.1-.5-.1-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.2-1.2-.4-2.3-1.4-.8-.8-1.4-1.7-1.5-2-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.1c-.2-.6-.5-.5-.7-.5Z"/></svg>
+              Kirim ke WhatsApp
+            </a>
+            <p class="fine">Pesan terbuka di WhatsApp, belum terkirim sampai Anda menekan kirim. Harga dan ketersediaan dikonfirmasi langsung oleh pemilik.</p>
+          </div>
+        </aside>
+      </form>
+    </div>
+  </section>
+
+  <section class="sec scroll-m" id="titik">
+    <div class="wrap">
+      <p class="eyebrow">Titik jemput</p>
+      <h2>Jemput di mana saja</h2>
+      <p class="sec-lead">Pilih titik jemput. Mobil di jalur ikut pindah, dan pilihan Anda masuk ke rencana sewa.</p>
+      <div class="route"><div class="stops" id="stops"></div></div>
+      <p class="route-note">Terpilih: <strong id="stopName"></strong> &middot; <a href="#rencana">Lihat rencana sewa</a>. Lokasi lain bisa ditanyakan lewat WhatsApp.</p>
+    </div>
+  </section>
+
+  <section class="sec alt">
+    <div class="wrap">
+      <p class="eyebrow">Yang kami jaga</p>
+      <h2>Alasan sewa di sini</h2>
+      <div class="why">
+        <div class="why-item">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.6-3 8.2-7 10-4-1.8-7-5.4-7-10V6l7-3Z"/><path d="M8.5 12.2l2.5 2.5 4.5-5"/></svg></span>
+          <h3>Armada terawat</h3>
+          <p>Kondisi unit jadi prioritas sebelum diserahkan ke penyewa.</p>
+        </div>
+        <div class="why-item">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="5" r="2"/><path d="M9 8.5l1 5h4.5l1.5 5.5M10 13.5l-1.5 5M14.5 13.5H18"/></svg></span>
+          <h3>Nyaman &amp; bersih</h3>
+          <p>Kabin bersih supaya perjalanan, pendek atau jauh, tetap enak.</p>
+        </div>
+        <div class="why-item">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12.5V5a2 2 0 0 1 2-2h7.5L21 11.5 12.5 20 4 11.5"/><circle cx="8" cy="8" r="1.4"/></svg></span>
+          <h3>Harga bersaing</h3>
+          <p>Harga dikonfirmasi langsung lewat WhatsApp, tanpa tebak-tebakan.</p>
+        </div>
+        <div class="why-item">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12l4-4 3 1.5 3-2.5 4 3 4 .5v3l-4 4-3-2-2 2-3-1-4 3-2-3"/></svg></span>
+          <h3>Layanan terbaik</h3>
+          <p>Satu nomor WhatsApp untuk tanya, pesan, dan konfirmasi.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec scroll-m" id="tanya">
+    <div class="wrap">
+      <p class="eyebrow">Tanya jawab</p>
+      <h2>Yang sering ditanyakan</h2>
+      <div class="faq" id="faq"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="cta scroll-m" id="kontak">
+  <div class="wrap">
+    <div class="cta-grid">
+      <h2>Ready, <em>Bosku.</em></h2>
+      <div>
+        <p class="lab">WhatsApp</p>
+        <p class="num" id="waNum">+62 822-7159-7288</p>
+        <div class="actions">
+          <a class="btn btn-sun wa-link" href="https://wa.me/6282271597288" target="_blank" rel="noopener">Chat sekarang</a>
+          <button class="btn btn-ghost" id="copyNum" type="button">Salin nomor</button>
+        </div>
+      </div>
+    </div>
+    <div class="foot">
+      <span>Rental Mobil Timika &middot; Kabupaten Mimika</span>
+      <span>Sewa perhari, perbulan, dan pertahun</span>
+    </div>
+  </div>
+</footer>
+
+<a class="btn btn-wa fab wa-link" href="https://wa.me/6282271597288" target="_blank" rel="noopener" aria-label="Chat WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.9L2 22l5.2-1.5A9.9 9.9 0 1 0 12.04 2Zm0 1.8a8.1 8.1 0 1 1-4.3 15l-.3-.2-3 .85.9-2.9-.2-.3A8.1 8.1 0 0 1 12.04 3.8Zm-2.9 3.9c-.2 0-.5.1-.7.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-1.9-.9c-.3-.1-.5-.1-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.2-1.2-.4-2.3-1.4-.8-.8-1.4-1.7-1.5-2-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.1c-.2-.6-.5-.5-.7-.5Z"/></svg>
+  Chat WA
+</a>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ====== DATA YANG BISA DIEDIT ====== */
+  var WA_NUM = '6282271597288';
+  var WA_TEXT = '+62 822-7159-7288';
+
+  /* Isi harga di sini kalau sudah ada (dalam Rupiah). Contoh:
+     var PRICES = { rush: { hari: 400000, bulan: 9000000, tahun: 100000000 } };
+     Selama kosong, website menampilkan "Harga menyusul". */
+  var PRICES = {};
+
+  /* Foto asli bisa ditambahkan nanti dengan field photo: 'data:image/...' atau file di samping halaman. */
+  var FLEET = [
+    { id:'rush',   name:'Toyota Rush',   type:'SUV',      seats:7, body:'suv',   color:'#F4F6FA', tag:'SUV 7 penumpang. Posisi duduk tinggi, enak untuk jalan jauh.' },
+    { id:'terios', name:'Daihatsu Terios', type:'SUV',    seats:7, body:'suv',   color:'#E9ECF2', tag:'SUV 7 penumpang untuk keluarga dan perjalanan dinas.' },
+    { id:'avanza', name:'Toyota Avanza', type:'MPV',      seats:7, body:'mpv',   color:'#1B1F2B', tag:'MPV 7 penumpang. Pilihan umum untuk keluarga.' },
+    { id:'xenia',  name:'Daihatsu Xenia', type:'MPV',     seats:7, body:'mpv',   color:'#F4F6FA', tag:'MPV 7 penumpang. Lega untuk keluarga dan rombongan kecil.' },
+    { id:'brio',   name:'Honda Brio',    type:'City car', seats:5, body:'hatch', color:'#D52B2F', tag:'City car 5 penumpang. Lincah untuk dalam kota.' },
+    { id:'sigra',  name:'Daihatsu Sigra', type:'MPV',     seats:7, body:'mpv',   color:'#B9C0CC', tag:'MPV 7 penumpang. Irit untuk pemakaian harian.' },
+    { id:'calya',  name:'Toyota Calya',  type:'MPV',      seats:7, body:'mpv',   color:'#DDE1E8', tag:'MPV 7 penumpang. Praktis untuk antar-jemput.' }
+  ];
+
+  var STOPS = [
+    { n:'Bandara Mozes Kilangin', d:'Antar-jemput penerbangan. Kabari jadwal pesawat lewat WA.' },
+    { n:'Dalam kota Timika',      d:'Urusan harian, kantor, dan keluarga.' },
+    { n:'Kuala Kencana',          d:'Kawasan Kuala Kencana dan sekitarnya.' },
+    { n:'Pantai Pasir Hitam',     d:'Jalan-jalan akhir pekan ke pantai.' },
+    { n:'Pelabuhan Poumako',      d:'Antar-jemput kedatangan kapal.' }
+  ];
+  var OTHER_STOP = 'Lokasi lain (tanya via WA)';
+
+  var FAQ = [
+    { q:'Bisa sewa berapa lama?', a:'Perhari, perbulan, atau pertahun. Isi lama sewa di bagian Atur sewa, lalu kirim lewat WhatsApp.' },
+    { q:'Mobil apa saja yang ada?', a:'Rush, Terios, Avanza, Xenia, Brio, Sigra, Calya, dan tipe lain. Ketersediaan unit dikonfirmasi lewat WhatsApp.' },
+    { q:'Berapa harganya?', a:'Daftar harga sedang disiapkan. Kirim rencana sewa Anda lewat WhatsApp dan harga dikonfirmasi langsung oleh pemilik.' },
+    { q:'Apa syarat sewanya?', a:'Syarat dan dokumen dijelaskan langsung oleh pemilik lewat WhatsApp sebelum mobil diserahkan.' },
+    { q:'Bisa pakai sopir?', a:'Pilih Dengan sopir di bagian Atur sewa, lalu konfirmasi ketersediaan dan biayanya lewat WhatsApp.' }
+  ];
+
+  /* ====== BANTUAN ====== */
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $ = function(s, r){ return (r || document).querySelector(s); };
+  var root = document.documentElement;
+  var WAICON = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.9L2 22l5.2-1.5A9.9 9.9 0 1 0 12.04 2Zm0 1.8a8.1 8.1 0 1 1-4.3 15l-.3-.2-3 .85.9-2.9-.2-.3A8.1 8.1 0 0 1 12.04 3.8Zm-2.9 3.9c-.2 0-.5.1-.7.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-1.9-.9c-.3-.1-.5-.1-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.2-1.2-.4-2.3-1.4-.8-.8-1.4-1.7-1.5-2-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.1c-.2-.6-.5-.5-.7-.5Z"/></svg>';
+
+  function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function waLink(text){ return 'https://wa.me/' + WA_NUM + (text ? '?text=' + encodeURIComponent(text) : ''); }
+  function rupiah(n){ return new Intl.NumberFormat('id-ID', { style:'currency', currency:'IDR', maximumFractionDigits:0 }).format(n); }
+  var dateFmt = new Intl.DateTimeFormat('id-ID', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+  function pad(n){ return String(n).padStart(2, '0'); }
+  function toISO(d){ return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+  function parseISO(s){
+    var p = (s || '').split('-').map(Number);
+    if (p.length !== 3 || p.some(isNaN)) return null;
+    return new Date(p[0], p[1] - 1, p[2]);
+  }
+  function addDur(d, qty, unit){
+    var x = new Date(d.getTime());
+    if (unit === 'hari') x.setDate(x.getDate() + qty);
+    else if (unit === 'bulan') x.setMonth(x.getMonth() + qty);
+    else x.setFullYear(x.getFullYear() + qty);
+    return x;
+  }
+  function goTo(id){
+    var el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+  }
+
+  /* ====== MOBIL (SVG) ====== */
+  var BODIES = {
+    suv:{ w:260, h:110,
+      body:'M8 82V66Q8 56 20 54L58 48L78 24Q82 18 92 18H166Q176 18 182 25L204 48L236 54Q252 57 252 70V82Z',
+      glass:['M86 27H120V46H68Z','M126 27H164L176 46H126Z'],
+      wheels:[62,200], front:252, rear:8,
+      extra:'<rect x="92" y="11" width="74" height="4" rx="2" fill="var(--stroke)"/>' },
+    mpv:{ w:260, h:110,
+      body:'M6 82V64Q6 55 18 53L50 47L72 25Q77 19 88 19H178Q188 19 194 27L214 47L240 54Q254 58 254 70V82Z',
+      glass:['M80 27H118V46H62Z','M124 27H176L190 46H124Z'],
+      wheels:[60,204], front:254, rear:6, extra:'' },
+    hatch:{ w:220, h:110,
+      body:'M10 82V66Q10 57 22 55L52 50L72 28Q77 22 86 22H138Q148 22 154 28L172 50L196 55Q210 58 210 70V82Z',
+      glass:['M80 30H110V49H60Z','M116 30H138L152 49H116Z'],
+      wheels:[56,160], front:210, rear:10, extra:'' }
+  };
+  function carInner(key, color){
+    var b = BODIES[key];
+    var wheels = b.wheels.map(function(x){
+      return '<g><circle cx="'+x+'" cy="84" r="23" fill="var(--arch)"/><circle cx="'+x+'" cy="84" r="18" fill="#12151F"/>' +
+        '<g class="hub"><circle cx="'+x+'" cy="84" r="9" fill="#C9CFDB"/>' +
+        '<line x1="'+x+'" y1="76" x2="'+x+'" y2="92" stroke="#6B7385" stroke-width="2"/>' +
+        '<line x1="'+(x-8)+'" y1="84" x2="'+(x+8)+'" y2="84" stroke="#6B7385" stroke-width="2"/></g></g>';
+    }).join('');
+    var glass = b.glass.map(function(g){ return '<path d="'+g+'" fill="var(--glass)"/>'; }).join('');
+    return '<ellipse cx="'+(b.w/2)+'" cy="105" rx="'+(b.w*0.42)+'" ry="4" fill="rgba(0,0,0,.22)"/>' +
+      '<path d="'+b.body+'" fill="'+color+'" stroke="var(--stroke)" stroke-width="1.5" stroke-linejoin="round"/>' +
+      glass + b.extra +
+      '<rect x="'+(b.front-15)+'" y="58" width="12" height="6" rx="2" fill="#FFE27A"/>' +
+      '<rect x="'+b.rear+'" y="60" width="6" height="8" rx="1.5" fill="#E23B3B"/>' + wheels;
+  }
+  function carSVG(key, color, cls){
+    var b = BODIES[key];
+    return '<svg class="car '+(cls||'')+'" viewBox="0 0 '+b.w+' '+b.h+'" aria-hidden="true" focusable="false">' + carInner(key, color) + '</svg>';
+  }
+
+  /* hero */
+  $('#heroCar').innerHTML = carInner('suv', '#F4F6FA');
+
+  /* ====== TEMA ====== */
+  var themeBtn = $('#themeBtn');
+  try { var saved = localStorage.getItem('rmt-theme'); if (saved === 'dark' || saved === 'light') root.dataset.theme = saved; } catch(e){}
+  function curTheme(){ return root.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); }
+  function syncTheme(){
+    var dark = curTheme() === 'dark';
+    $('#icoMoon').hidden = dark;
+    $('#icoSun').hidden = !dark;
+    themeBtn.setAttribute('aria-label', dark ? 'Pakai tema terang' : 'Pakai tema gelap');
+    themeBtn.title = themeBtn.getAttribute('aria-label');
+  }
+  themeBtn.addEventListener('click', function(){
+    var t = curTheme() === 'dark' ? 'light' : 'dark';
+    root.dataset.theme = t;
+    try { localStorage.setItem('rmt-theme', t); } catch(e){}
+    syncTheme();
+  });
+  syncTheme();
+
+  /* ====== LINK WA UMUM ====== */
+  var generic = waLink('Halo, saya mau tanya sewa mobil di Timika.');
+  document.querySelectorAll('.wa-link').forEach(function(a){ a.href = generic; });
+
+  /* ====== PARALLAX ====== */
+  if (!reduce){
+    var layers = Array.prototype.slice.call(document.querySelectorAll('[data-depth]'));
+    var ticking = false;
+    window.addEventListener('scroll', function(){
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function(){
+        var y = Math.min(window.scrollY, 900);
+        layers.forEach(function(l){ l.style.transform = 'translateX(' + (-y * l.dataset.depth).toFixed(1) + 'px)'; });
+        ticking = false;
+      });
+    }, { passive:true });
+  }
+
+  /* ====== STATE PERENCANA ====== */
+  var tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 1);
+  var state = { car:'', start:toISO(tomorrow), qty:1, unit:'hari', stop:STOPS[0].n, service:'Lepas kunci', name:'' };
+
+  var fCar = $('#fCar'), fStart = $('#fStart'), fQty = $('#fQty'), fStop = $('#fStop'), fName = $('#fName');
+
+  fCar.innerHTML = '<option value="">Belum tahu, minta rekomendasi</option>' +
+    FLEET.map(function(c){ return '<option value="'+c.id+'">'+c.name+' ('+c.seats+' kursi)</option>'; }).join('');
+  fStop.innerHTML = STOPS.map(function(s){ return '<option>'+s.n+'</option>'; }).join('') + '<option>'+OTHER_STOP+'</option>';
+  fStart.value = state.start;
+  fStart.min = toISO(new Date());
+  $('#fleetCount').textContent = FLEET.length;
+
+  function getCar(){ for (var i = 0; i < FLEET.length; i++) if (FLEET[i].id === state.car) return FLEET[i]; return null; }
+  function maxQty(){ return state.unit === 'hari' ? 365 : state.unit === 'bulan' ? 36 : 5; }
+
+  function buildMsg(){
+    var car = getCar();
+    var s = parseISO(state.start);
+    var e = s ? addDur(s, state.qty, state.unit) : null;
+    var L = [
+      'Halo, saya mau tanya sewa mobil di Timika.',
+      'Mobil: ' + (car ? car.name : 'belum pilih (minta rekomendasi)'),
+      'Mulai: ' + (s ? dateFmt.format(s) : 'belum dipilih'),
+      'Kembali: ' + (e ? dateFmt.format(e) : '-'),
+      'Lama sewa: ' + state.qty + ' ' + state.unit,
+      'Jemput di: ' + state.stop,
+      'Layanan: ' + state.service
+    ];
+    if (state.name.trim()) L.push('Nama: ' + state.name.trim());
+    L.push('Mohon info harga dan ketersediaan. Terima kasih.');
+    return L.join('\n');
+  }
+
+  function renderSlip(){
+    var car = getCar();
+    var s = parseISO(state.start);
+    var e = s ? addDur(s, state.qty, state.unit) : null;
+    var unitPrice = car && PRICES[car.id] && PRICES[car.id][state.unit];
+    var rows = [
+      ['Mobil', car ? car.name : 'Belum dipilih'],
+      ['Mulai', s ? dateFmt.format(s) : 'Pilih tanggal'],
+      ['Kembali', e ? dateFmt.format(e) : '-'],
+      ['Lama', state.qty + ' ' + state.unit],
+      ['Jemput', state.stop],
+      ['Layanan', state.service]
+    ];
+    $('#slipList').innerHTML = rows.map(function(r){
+      return '<div><dt>' + r[0] + '</dt><dd>' + esc(r[1]) + '</dd></div>';
+    }).join('') +
+      '<div class="est"><dt>Estimasi</dt><dd>' + (unitPrice ? rupiah(unitPrice * state.qty) : 'Harga menyusul') + '</dd>' +
+      (unitPrice ? '' : '<small>Dikonfirmasi lewat WhatsApp</small>') + '</div>';
+    $('#slipArt').innerHTML = car ? carSVG(car.body, car.color) : carSVG('mpv', 'none', 'ghost');
+    var msg = buildMsg();
+    $('#bubble').textContent = msg;
+    $('#sendWA').href = waLink(msg);
+  }
+
+  function setCar(id){ state.car = id; fCar.value = id; renderSlip(); }
+  function setUnit(u){
+    state.unit = u;
+    var r = $('#u' + u.charAt(0).toUpperCase() + u.slice(1));
+    if (r) r.checked = true;
+    if (state.qty > maxQty()) state.qty = maxQty();
+    fQty.max = maxQty();
+    fQty.value = state.qty;
+    renderSlip();
+  }
+  var stopsEl = $('#stops');
+  function setStop(name){
+    state.stop = name;
+    fStop.value = name;
+    var idx = -1;
+    STOPS.forEach(function(s, i){ if (s.n === name) idx = i; });
+    if (idx >= 0) stopsEl.style.setProperty('--i', idx);
+    stopsEl.querySelectorAll('.stop').forEach(function(b, i){ b.setAttribute('aria-pressed', i === idx ? 'true' : 'false'); });
+    $('#stopName').textContent = name;
+    renderSlip();
+  }
+
+  fCar.addEventListener('change', function(){ setCar(fCar.value); });
+  fStart.addEventListener('input', function(){ state.start = fStart.value; renderSlip(); });
+  fQty.addEventListener('input', function(){
+    var n = parseInt(fQty.value, 10);
+    if (isNaN(n)) return;
+    state.qty = Math.max(1, Math.min(maxQty(), n));
+    renderSlip();
+  });
+  fQty.addEventListener('change', function(){ fQty.value = state.qty; });
+  $('#qMinus').addEventListener('click', function(){ state.qty = Math.max(1, state.qty - 1); fQty.value = state.qty; renderSlip(); });
+  $('#qPlus').addEventListener('click', function(){ state.qty = Math.min(maxQty(), state.qty + 1); fQty.value = state.qty; renderSlip(); });
+  document.querySelectorAll('input[name="unit"]').forEach(function(r){ r.addEventListener('change', function(){ setUnit(r.value); }); });
+  document.querySelectorAll('input[name="service"]').forEach(function(r){ r.addEventListener('change', function(){ state.service = r.value; renderSlip(); }); });
+  fStop.addEventListener('change', function(){ setStop(fStop.value); });
+  fName.addEventListener('input', function(){ state.name = fName.value; renderSlip(); });
+  $('#planForm').addEventListener('submit', function(e){ e.preventDefault(); });
+
+  document.querySelectorAll('.term').forEach(function(b){
+    b.addEventListener('click', function(){ setUnit(b.dataset.unit); goTo('rencana'); });
+  });
+
+  /* ====== ARMADA ====== */
+  var FILTERS = [
+    { k:'all', l:'Semua' }, { k:'SUV', l:'SUV' }, { k:'MPV', l:'MPV' }, { k:'City car', l:'City car' }, { k:'seat7', l:'7 penumpang' }
+  ];
+  var filter = 'all';
+  var chipsEl = $('#chips'), gridEl = $('#grid');
+
+  function matches(c){
+    if (filter === 'all') return true;
+    if (filter === 'seat7') return c.seats >= 7;
+    return c.type === filter;
+  }
+  function cardHTML(c, i){
+    var p = PRICES[c.id] && PRICES[c.id].hari;
+    var price = p ? '<span class="price has">Mulai ' + rupiah(p) + ' / hari</span>' : '<span class="price">Harga menyusul</span>';
+    var msg = 'Halo, saya tertarik menyewa ' + c.name + '. Boleh info ketersediaan dan harganya?';
+    return '<article class="card" style="animation-delay:' + (i * 45) + 'ms">' +
+      '<div class="stage"><span class="badge">' + c.type + '</span><span class="badge seats">' + c.seats + ' kursi</span>' + carSVG(c.body, c.color) + '</div>' +
+      '<div class="card-body"><h3>' + c.name + '</h3><p>' + c.tag + '</p>' + price + '</div>' +
+      '<div class="card-actions">' +
+        '<a class="btn btn-wa btn-sm" target="_blank" rel="noopener" href="' + waLink(msg) + '">' + WAICON + 'Pesan via WA</a>' +
+        '<button type="button" class="btn btn-line btn-sm" data-pick="' + c.id + '">Atur sewa</button>' +
+      '</div></article>';
+  }
+  function renderGrid(){
+    var list = FLEET.filter(matches);
+    var html = list.map(cardHTML).join('');
+    html += '<article class="card tile-more" style="animation-delay:' + (list.length * 45) + 'ms">' +
+      '<h3>Dll.</h3><p>Ada tipe lain di luar daftar ini. Tanyakan langsung lewat WhatsApp.</p>' +
+      '<a class="btn btn-sun btn-sm" target="_blank" rel="noopener" href="' + waLink('Halo, saya mau tanya mobil lain untuk disewa di Timika.') + '">Tanya mobil lain</a></article>';
+    gridEl.innerHTML = html;
+  }
+  function renderChips(){
+    chipsEl.innerHTML = FILTERS.map(function(f){
+      return '<button type="button" class="chip" data-k="' + f.k + '" aria-pressed="' + (f.k === filter) + '">' + f.l + '</button>';
+    }).join('');
+  }
+  chipsEl.addEventListener('click', function(e){
+    var b = e.target.closest('.chip'); if (!b) return;
+    filter = b.dataset.k; renderChips(); renderGrid();
+  });
+  gridEl.addEventListener('click', function(e){
+    var b = e.target.closest('[data-pick]'); if (!b) return;
+    setCar(b.dataset.pick); goTo('rencana');
+  });
+  renderChips(); renderGrid();
+
+  /* ====== TITIK JEMPUT ====== */
+  stopsEl.style.setProperty('--n', STOPS.length);
+  stopsEl.innerHTML = '<div class="marker">' + carSVG('hatch', '#FFC400') + '</div>' + STOPS.map(function(s, i){
+    return '<button type="button" class="stop" data-i="' + i + '" aria-pressed="' + (i === 0) + '">' +
+      '<span class="st-name">' + s.n + '</span><span class="st-desc">' + s.d + '</span></button>';
+  }).join('');
+  stopsEl.addEventListener('click', function(e){
+    var b = e.target.closest('.stop'); if (!b) return;
+    setStop(STOPS[+b.dataset.i].n);
+  });
+
+  /* ====== FAQ ====== */
+  var faqEl = $('#faq');
+  faqEl.innerHTML = FAQ.map(function(f, i){
+    return '<div class="q' + (i === 0 ? ' open' : '') + '">' +
+      '<button type="button" class="q-btn" id="qb' + i + '" aria-expanded="' + (i === 0) + '" aria-controls="qp' + i + '">' + f.q + '</button>' +
+      '<div class="q-panel" id="qp' + i + '" role="region" aria-labelledby="qb' + i + '"><div><p>' + f.a + '</p></div></div></div>';
+  }).join('');
+  faqEl.addEventListener('click', function(e){
+    var b = e.target.closest('.q-btn'); if (!b) return;
+    var q = b.parentNode, open = !q.classList.contains('open');
+    q.classList.toggle('open', open);
+    b.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  /* ====== SALIN NOMOR ====== */
+  var copyBtn = $('#copyNum');
+  copyBtn.addEventListener('click', function(){
+    function done(t){ copyBtn.textContent = t; setTimeout(function(){ copyBtn.textContent = 'Salin nomor'; }, 1800); }
+    function fallback(){
+      var r = document.createRange(); r.selectNodeContents($('#waNum'));
+      var sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
+      done('Nomor terpilih, salin manual');
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(WA_TEXT).then(function(){ done('Tersalin'); }, fallback);
+    } else fallback();
+  });
+
+  /* ====== AWAL ====== */
+  setStop(STOPS[0].n);
+  setUnit('hari');
+})();
+</script>
